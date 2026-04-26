@@ -1,0 +1,460 @@
+/*3. App.css : App.jsx에서 정한 classname에 적용하는 css*/
+
+/*(1) 전체 화면 스타일*/
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+} 
+/*브라우저 기본 여백을 없애는 코드, 안 하면 화면 가장자리에 미세한 흰 여백이 생김*/
+
+.app {
+  min-height: 100vh;
+  background: rgba(225, 223, 218, 0.909);
+  padding-bottom: 90px;
+}
+
+.wholescreen {
+  width: 100%;
+  max-width: 390px;
+  min-height: calc(100vh - 72px);
+  margin: 0 auto;
+  padding: 24px;
+  padding-bottom: 90px; /*하단 탭바가 화면을 가리는 것을 방지하기 위해 여백을 줌*/
+}
+
+
+html {
+  scrollbar-gutter: stable;
+} /*스크롤바가 항상 공간을 차지하도록 해서, 탭별로 스크롤이 생겼다 없어졌다 할 때 레이아웃이 흔들리는 것 방지*/
+
+.home-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: bottom 24px;
+}
+
+.home-logo{
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -1px; /* 글자간격 좁히기 */
+  transform: skewX(-5deg);
+  color: #d1a916;
+  font-size: 20px;
+  margin: 0;
+  font-weight: 800;
+  /*  text-shadow: 0 2px 6px rgba(0,0,0,0.15); */
+}
+
+.point-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+}
+
+.point-badge{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffb800;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;;
+}
+
+/*.hero-bg {
+  position: relative;
+  height: 130px;
+  padding: 44px 28px 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff7d8 0%, #ffe28a 45%, #f6f6f6 100%);
+}*/
+
+/*(2) Tapbar*/
+/*Tapbar.jsx의 tabs 전체 박스에 적용됨*/
+.tabs { 
+  position: fixed; /*스크롤을 해도 안움직이도록 고정*/
+  left: 0; /*왼쪽 끝에 붙임*/
+  right: 0; 
+  bottom: 0;
+
+  height: 72px;
+  background: white; 
+  border-radius: 30px 30px 0 0; /*탭바의 윗부분만 둥글게*/
+  border-top: 1px solid #ddd; /*탭바 위쪽에 연한 회색 선*/
+
+  display: flex; 
+  justify-content: space-around; /*버튼들 사이 간격을 비슷하게 벌림*/
+  align-items: center; /*버튼들을 세로 가운데 정렬*/
+}
+
+
+/*Tapbar.jsx의 tabs안에 있는 button에만 적용됨*/
+.tabs button {
+  border: 1px solid transparent; 
+  /*border: none = 아예 공간도 없음*/
+  /*border: transparent = 안보이지만, 1px 공간은 있음, 버튼이 눌리는 영역이 더 커짐*/
+  background: none;
+  color : #999;
+  font-size: 14px;
+  font-weight: 600;
+
+  flex:1; /*버튼들이 탭바 전체 너비를 균등하게 나눠가짐*/
+  height:100%; /*버튼 하나가 탭바 전체 높이(72px)를 채우도록 함*/
+
+  display: flex;
+  flex-direction: column; /*버튼 안의 글자와 아이콘을 세로로 배치*/
+  align-items: center; /*버튼 안의 글자를 세로 가운데 정렬*/
+  justify-content: center; /*버튼 안의 글자를 가로 가운데 정렬*/ 
+  
+  gap: 2px;;
+}
+
+/*현재 선택된 탭 ("React에서 가져옴_내가 만든 classname")*/
+.tabs button.active {
+  color: #FFB800;
+  font-weight: bold;
+}
+
+/*버튼이 눌리는 순간의 효과 (잠깐)*/
+.tabs button:active {
+  transform: scale(0.95);
+}
+
+.tabs button:hover{
+  transform: scale(1.1);
+} /*마우스를 올렸을 때 아이콘이 커지는 효과*/
+
+
+
+/* 가운데 메인 식단 탭 */
+.diet-floating-icon {
+  position:absolute;
+  top: -6px;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD666,#ffc933, #ffb800);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.2s ease; /*transform이 부드럽게 변화하도록 설정*/
+  transform: translateY(-19px); /*기본 위치에서 위로 19px 이동시킴, 마우스를 올렸을 때 더 위로 올라가도록 설정*/
+  box-shadow:
+    0 8px 24px rgba(255, 184, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.1);}
+
+.diet-tab:active .diet-floating-icon {
+  transform: scale(0.95);
+}
+
+.diet-floating-icon svg {
+  width: 30px;
+  height: 60px;
+}
+
+.diet-label {
+  margin-top: 34px;
+}
+
+.diet-floating-icon:hover{
+  transform: scale(1) translateY(-19px);
+} /*마우스를 올렸을 때 아이콘이 커지는 효과*/
+
+/*(3) 홈, 첫화면 */
+
+
+.welcome-card {
+  display: flex;
+  gap: 16px;
+  background: #fff3c4;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cheese-character {
+  font-size: 56px;
+}
+
+.mouse_image {
+  width: 130px;
+  height: 130px;
+  animation: character-bounce 1.5s ease-in-out infinite;
+}
+@keyframes character-bounce {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-4px) translateY(-6px) rotate(-2deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+.welcome-card h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.welcome-card p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.welcome-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.welcome-buttons button {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #ffcf4a;
+  font-weight: bold;
+}
+
+.section-title {
+  color: rgba(0, 0, 0, 0.781);
+  font-size: 20px;
+  margin: 20px 0 12px;
+}
+
+.point-card {
+  position: relative;
+  background: linear-gradient(135deg, #d6a83e, #f2d477);
+  border-radius: 20px;
+  padding: 28px 24px;
+  color: white;
+  text-align: center;
+}
+
+.point-card strong {
+  font-size: 36px;
+}
+
+.level-badge {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: #fff3c4;
+  color: #8a641c;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  margin-top: 16px;
+}
+
+.progress-fill {
+  width: 70%;
+  height: 100%;
+  background: white;
+  border-radius: 999px;
+}
+
+.week-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 18px 0;
+}
+
+.day-item {
+  text-align: center;
+  color: #777;
+  font-weight: bold;
+}
+
+.day-circle {
+  margin-top: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+}
+
+.day-circle.checked {
+  background: #d8b64c;
+  color: white;
+}
+
+
+
+
+
+
+
+.talking-character {
+  position: relative;
+  display: inline-block;
+}
+
+.floating-character {
+  animation: gentle-float 2.6s ease-in-out infinite;
+}
+
+.effect-default .floating-character {
+  animation: none;
+}
+
+.effect-level-1 .floating-character {
+  animation: gentle-float 2.8s ease-in-out infinite;
+}
+
+.effect-level-3 .floating-character {
+  animation: happy-float 2.2s ease-in-out infinite;
+}
+
+.effect-level-6 .floating-character {
+  animation: celebration-float 1.8s ease-in-out infinite;
+}
+
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle-pop 1.8s ease-in-out infinite;
+}
+
+.sparkle-one {
+  top: -8px;
+  right: 0;
+}
+
+.sparkle-two {
+  top: 8px;
+  left: -8px;
+  animation-delay: 0.4s;
+}
+
+.crown {
+  position: absolute;
+  top: -15px;
+  left: 60%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: #ffb800;
+
+  animation: crown-pop 1.5s ease-in-out infinite;
+}
+
+@keyframes crown-pop {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes happy-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+}
+
+@keyframes celebration-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(3deg) scale(1.04);
+  }
+}
+
+@keyframes sparkle-pop {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* (1) 홈화면 하단부 카드 */
+.menus {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 0 0px;
+}
+
+.menu-card {
+  height: 118px;
+  padding: 16px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #fff8e8 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+
+  position: relative;
+}
+
+.menu-card h3 {
+  font-size: 18px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.menu-card p {
+  font-size: 13px;
+  color: #888;
+}
+
+.menu-rank {
+  background: linear-gradient(135deg, #ffdc15cc 0%, #d896082c 100%);
+}
+
+.menu-point {
+  background: linear-gradient(135deg, #ffc34d 0%, #fff0b3 100%);
+}
+
+.menu-card svg {
+  position: absolute;
+  bottom: 60px;
+  right: 10px;
+  width: 40x;
+  height: 40px;
+}
