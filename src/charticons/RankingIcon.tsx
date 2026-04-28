@@ -1,23 +1,25 @@
-// RankingIcon.jsx
 export function RankingIcon() {
   return (
-    <svg viewBox="0 0 80 80" className="icon">
-      <polyline
-        points="10,55 28,40 42,48 65,20"
-        fill="none"
-        stroke="#f4b83f"
-        strokeWidth="6"
+    <svg
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M7 21L13 15L18 20L25 11"
+        stroke= "rgba(209, 25, 22, 0.4)"        
+        strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <polyline
-        points="55,20 65,20 65,30"
-        fill="none"
-        stroke="#f4b83f"
-        strokeWidth="6"
+      <path
+        d="M20 11H25V16"
+        stroke="rgba(209, 25, 22, 0.4)" 
+        strokeWidth="3"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
 }
-

@@ -1,5 +1,26 @@
 /*3. App.css : App.jsx에서 정한 classname에 적용하는 css*/
 
+
+:root {
+  --card: #FFFDF8;
+  --card-white: #FFFFFF;
+
+  --primary: #F2C94C;
+  --primary-strong: #D1A916;
+  --primary-soft: #FFF3C4;
+
+
+  --text-main: #2E2A24;
+  --text-sub: #7A746A;
+  --text-muted: #A7A29A;
+
+  --line: rgba(46, 42, 36, 0.1);
+  --shadow-card: 0 10px 30px rgba(46, 42, 36, 0.08);
+  --shadow-soft: 0 6px 18px rgba(46, 42, 36, 0.06);
+
+  --radius-card: 24px;
+}
+
 /*(0) 전체 화면 스타일*/
 body {
   margin: 0;
@@ -9,18 +30,20 @@ body {
 
 .app {
   min-height: 100vh;
-  background: white;
-  padding-bottom: 90px;
+  background: #FAF7EF; 
+  /* background: white; */
+  padding-bottom: 0px;
+  
 }
 
 .wholescreen {
   width: 100%;
-  max-width: 390px;
+  max-width: 430px;
   min-height: calc(100vh - 72px);
   margin: 0 auto;
-  padding: 24px;
-  padding-bottom: 90px; /*하단 탭바가 화면을 가리는 것을 방지하기 위해 여백을 줌*/
-}
+  padding: 24px 20px 70px;
+  box-sizing: border-box;
+  }
 
 
 html {
@@ -31,7 +54,7 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: bottom 24px;
+  margin-bottom: 6px;
 }
 
 .home-logo{
@@ -42,7 +65,7 @@ html {
   color: #d1a916;
   font-size: 22px;
   margin: 0;
-    letter-spacing: 2px;
+  letter-spacing: 2px;
 
   font-weight: 200;
   /*  font-weight: 800; */
@@ -57,7 +80,7 @@ html {
 }
 
 .point-badge{
-    font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard', sans-serif;
 
   width: 26px;
   height: 26px;
@@ -82,18 +105,26 @@ html {
 /*Tapbar.jsx의 tabs 전체 박스에 적용됨*/
 .tabs { 
   position: fixed; /*스크롤을 해도 안움직이도록 고정*/
-  left: 0; /*왼쪽 끝에 붙임*/
-  right: 0; 
+  left: 50%; /*가운데 정렬*/
   bottom: 0;
+  transform: translateX(-50%); /*가운데 정렬*/
 
-  height: 72px;
+  width: 100%; /*화면 전체 너비 차지*/
+  max-width: 430px; /*최대 너비 제한*/
+
+  backdrop-filter: blur(16px); /*탭바 배경에 블러 효과 적용*/
+
+  height: 78px;
   background: white; 
   border-radius: 0px 0px 0 0; /*탭바의 윗부분만 둥글게*/
-  border-top: 1.5px solid #ddd; /*탭바 위쪽에 연한 회색 선*/
+  border-top: 1px solid var(--line); /*탭바 위쪽에 연한 회색 선*/
+  box-shadow: 0 -8px 24px rgba(46, 42, 36, 0.04); /*탭바 위쪽에 연한 그림자*/
 
   display: flex; 
   justify-content: space-around; /*버튼들 사이 간격을 비슷하게 벌림*/
   align-items: center; /*버튼들을 세로 가운데 정렬*/
+  z-index : 20; /*탭바가 다른 요소들보다 위에 보이도록 설정*/
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 
@@ -137,23 +168,36 @@ html {
 
 /*(2)-1. Tapbar 탭 가운데 메인 식단 탭 */
 .diet-floating-icon {
+  animation: diet-breathe 2.6s ease-in-out infinite;
   position:absolute;
-  top: -6px;
+  top: 0px;
 
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #FFD666,#ffc933, #ffb800);
+  background: linear-gradient(135deg, #FFE08A, #F2C94C);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   transition: transform 0.2s ease; /*transform이 부드럽게 변화하도록 설정*/
-  transform: translateY(-19px); /*기본 위치에서 위로 19px 이동시킴, 마우스를 올렸을 때 더 위로 올라가도록 설정*/
-  box-shadow:
-    0 8px 24px rgba(255, 255, 255, 0.4),
-    0 4px 8px rgba(0, 0, 0, 0.1);}
+  transform: translateY(-12px); /*기본 위치에서 위로 19px 이동시킴, 마우스를 올렸을 때 더 위로 올라가도록 설정*/
+  /* box-shadow:
+    0 10px 24px rgba(209, 169, 22, 0.28),
+    0 4px 10px rgba(46, 42, 36, 0.12); */
+
+}
+
+@keyframes diet-breathe {
+  0%, 100% {
+    transform: translateY(-19px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-21px) scale(1.06);
+  }
+}
 
 .diet-tab:active .diet-floating-icon {
   transform: scale(0.95);
@@ -176,22 +220,48 @@ html {
 
 .welcome-card {
   display: flex;
-  gap: 16px;
-  /* background: #fff3c4; */ background:rgba(249, 249, 249, 1);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  align-items: center;  /*세로 가운데 정렬*/
+  gap: 20px;
+  /* background: #fff3c4; */ /*background:rgba(249, 249, 249, 1); */
+  /* background: var(--card-white); */
+  padding: 10px 2px 0px;
+  margin-top: 0px;
+  margin-bottom: 14px;
 }
 
-.cheese-character {
-  font-size: 56px;
+
+.welcome-content {
+  flex: 1;
+}
+.highlight {
+  color: var(--primary-strong);
+}
+.welcome-content-sub {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.4;
+  font-weight: 600;
 }
 
+
+.meal-status {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  line-height: 1.4;
+
+}
 .mouse_image {
-  width: 130px;
-  height: 130px;
   animation: character-bounce 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+  width: 120px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 @keyframes character-bounce {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -205,9 +275,14 @@ html {
     transform: translateY(0) rotate(0deg);
   }
 }
+
 .welcome-card h2 {
-  margin: 0 0 8px;
-  font-size: 16px;
+  margin: 0 0 7px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height:1.25;
+
 }
 
 .welcome-card p {
@@ -221,34 +296,36 @@ html {
   margin-top: 12px;
 }
 
-.welcome-buttons button {
-  border: none;
-  border-radius: 999px;
-  padding: 8px 12px;
-  background: #ffcf4a;
-  font-weight: bold;
+.welcome-card .welcome-buttons{
+  margin-top: 0;
 }
 
-.section-title {
-  color: rgba(0, 0, 0, 0.781);
-  font-size: 20px;
-  margin: 20px 0 12px;
+.welcome-buttons button {
+  border: 1px solid rgba(209, 169, 22, 0.28);
+  border-radius: 14px;
+  padding: 9px 16px;
+  background: #FFF0B8;
+  font-weight: bold;
+  color: var(--text-main);
+    box-shadow: 0 3px 8px rgba(209, 169, 22, 0.10);
+
 }
+
 
 /*(1) 홈화면 카드2 _ 포인트 */
 .point-card {
   position: relative;
-  background:rgba(249, 249, 249, 1); /* 마지막 값이 투명도 (0~1) */;
-  border-radius: 20px;
-  padding: 28px 24px 7px;
+  background: var(--card-white); /* 마지막 값이 투명도 (0~1) */;
+  border-radius: var(--radius-card);
+  padding: 28px 24px 15px;
   color: black;
   text-align: center;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.08);
-
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(46, 42, 36, 0.04);
 }
 
 .point-card strong {
-  font-size: 36px;
+  font-size: 34px;
 }
 
 .level-badge {
@@ -256,8 +333,8 @@ html {
   top: 12px;
   right: 16px;
   background: #fff3c4;
-  color: #8a641c;
-  border: 0.1px solid rgb(209, 169, 22, 0.2h); /*탭바 위쪽에 연한 회색 선*/
+  color: var(--text-main);
+  border: 1px solid rgba(209, 169, 22, 0.28);
 
   border-radius: 50%;
   width: 56px;
@@ -285,7 +362,28 @@ html {
 .week-row {
   display: flex;
   justify-content: space-between;
-  margin: 18px 0;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(46, 42, 36, 0.08);
+}
+
+.day-circle {
+  margin-top: 8px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #E9E8E4;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+}
+
+.day-circle.checked {
+  background: #D1A916;
+  color: white;
+  box-shadow: 0 4px 10px rgba(209, 169, 22, 0.22);
 }
 
 .day-item {
@@ -294,22 +392,6 @@ html {
   font-weight: bold;
 }
 
-.day-circle {
-  margin-top: 8px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: transparent;
-}
-
-.day-circle.checked {
-  background: #d8b64c;
-  color: white;
-}
 
 /*(1) 홈화면 카드3 _ 메뉴3개 */
 .menus {
@@ -323,14 +405,40 @@ html {
 .menu-card {
   height: 118px;
   padding: 16px;
-  border-radius: 22px;
-  background: linear-gradient(135deg, #DFF4EE 0%, #BFE3DA 100%);  
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  border-radius: var(--radius-card);
+  background: var(--card-white);
+  box-shadow: var(--shadow-card);
   position: relative;
+  overflow:hidden;
+}
+
+.menu-card::before {
+  content: "";
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  right: -30px;
+  bottom: -30px;
+  background: rgba(242, 201, 76, 0.18);
+}
+
+.menu-card h3  {
+  position: relative;
+  z-index: 1;
+}
+.menu-card p {
+  position: relative;
+  z-index: 1;
+}
+.menu-card svg {
+  position: relative;
+  z-index: 1;
 }
 
 .menu-card h3 {
-  font-size: 18px;
+  font-size: 17px;
+  font-weight: 800;
   margin-top: 6px;
   margin-bottom: 8px;
   color: #333;
@@ -339,26 +447,41 @@ html {
 .menu-card p {
   font-size: 13px;
   color: #888;
+  line-height: 1.4;
 }
 
 .menu-rank {
-background: linear-gradient(135deg, #FFF2C2 0%, #FFD666 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF9E6 100%);
 }
+
 .menu-point {
-background: linear-gradient(135deg, #FFF4CC 0%, #FFD666 100%);}
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF7DC 100%);
+}
 
 .menu-chat {
-background: linear-gradient(135deg, #DFF4EE 0%, #BFE3DA 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #EEF8F4 100%);
+}
+
+.menu-rank::before {
+  background: rgba(242, 201, 76, 0.2);
+}
+
+.menu-point::before {
+  background: rgba(209, 169, 22, 0.16);
+}
+
+.menu-chat::before {
+  background: rgba(94, 159, 138, 0.18);
 }
 
 .menu-card svg {
   position: absolute;
-  bottom: 60px;
-  right: 10px;
-  width: 40x;
-  height: 40px;
+  right: 12px;
+  bottom: 10px;
+  top: auto;
+  width: 38px;
+  height: 38px;
 }
-
 
 
 /*(1) 홈화면 카드1 _ 인삿말캐릭터애니메니션_ */
@@ -401,7 +524,7 @@ background: linear-gradient(135deg, #DFF4EE 0%, #BFE3DA 100%);
 
 .sparkle-two {
   top: 8px;
-  left: -8px;
+  left: -6px;
   animation-delay: 0.4s;
 }
 
@@ -467,3 +590,4 @@ background: linear-gradient(135deg, #DFF4EE 0%, #BFE3DA 100%);
     transform: scale(1.2);
   }
 }
+

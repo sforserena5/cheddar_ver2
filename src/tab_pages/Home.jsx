@@ -9,6 +9,7 @@ function Home({setActiveTab}) {
   const streak = 5; // 연속 기록 일수 (예시로 4일 설정)
   const remainingDays = 7 - streak;
   const days = ["월", "화", "수", "목", "금", "토", "일"];
+  /* const mealStatusText = "아침 완료 · 점심 미기록 · 저녁 예정"; */
   
   // 오늘
   const now = new Date();
@@ -29,10 +30,10 @@ function Home({setActiveTab}) {
 
   if (streak>=6) {
     image = "/mouse/mse_6.png";
-    message = `오늘은 ${month}월 ${date}일, ${day}요일이에요. 와~ 6일 연속이네요! 대단해요!`;
+    message = `와~ 6일 연속이네요! 대단해요!`;
   } else if (streak >= 3) {
     image = "/mouse/mse_3.png";
-    message =`오늘은 ${month}월 ${date}일, ${day}요일이에요.\n ${remainingDays}일만 더 기록하고 \n 포인트 받아가요!`;
+    message =`${remainingDays}일만 더 기록하고 \n 포인트 받아가요!`;
   } else if (streak >= 1) {
     image = "/mouse/mse_1.png";
     message = "시작이 좋아요! 계속 달려봐요!";
@@ -53,19 +54,25 @@ function Home({setActiveTab}) {
       
       <br />
       <section className="welcome-card">
-        <TalkingCharacter image={image} streak={streak} />
-        <div>
-          
-          <h2>체다님, 좋은 아침이에요!</h2>
-          <p>{message}</p>
+        <div className = "mouse-image">
+          <TalkingCharacter image={image} streak={streak} />
+        </div>
+
+        <div className="welcome-content">
+          <h2>오늘의 식단관리</h2>
+          <p className = "welcome-content-sub">체다님! 점심 기록이 아직 비어 있어요</p>
+
+          <div className="meal-status">
+            아침 완료 · <span className="highlight">점심 미기록</span> · 저녁 예정
+          </div>
+          {/* <p>{message}</p> */}
 
           <div className="welcome-buttons">
-            <button onClick={()=>setActiveTab("diet")}>식단 바로 기록하기</button> 
+            <button onClick={()=>setActiveTab("diet")}>식단 기록하기</button> 
           </div>
         </div>
       </section>
 
-      <h1 className="section-title"></h1>
 
       <section className="point-card">
         <div className="level-badge">Lv.7</div>
@@ -94,20 +101,20 @@ function Home({setActiveTab}) {
     <section className="menus">
       <div className="menu-card menu-rank">
         <h3>랭킹</h3>
-        <p>병원 환자 <br />랭킹 확인하기</p>
-        <RankingIcon />
+        <p>병원 내 랭킹<br /> 확인하기</p>
+        {/* <RankingIcon /> */}
       </div>
 
       <div className="menu-card menu-point">
         <h3>포인트</h3>
-        <p>누적 포인트 확인하기</p>
-        <BadgeIcon />
+        <p>누적 포인트 <br />확인하기</p>
+        {/* <BadgeIcon /> */} 
       </div>
 
       <div className="menu-card menu-chat">
         <h3>채팅</h3>
         <p>체다 AI와<br/> 대화하기</p>
-        <ChatIcon />
+        {/* <ChatIcon /> */}
       </div>
 
     </section>
