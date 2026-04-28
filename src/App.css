@@ -252,15 +252,7 @@ html {
   line-height: 1.4;
 
 }
-.mouse_image {
-  animation: character-bounce 1.5s ease-in-out infinite;
-  flex-shrink: 0;
-  width: 120px;
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 @keyframes character-bounce {
   0% {
@@ -315,7 +307,8 @@ html {
 /*(1) 홈화면 카드2 _ 포인트 */
 .point-card {
   position: relative;
-  background: var(--card-white); /* 마지막 값이 투명도 (0~1) */;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFF7DC 100%);
+; /* 마지막 값이 투명도 (0~1) */;
   border-radius: var(--radius-card);
   padding: 28px 24px 15px;
   color: black;
@@ -451,7 +444,7 @@ html {
 }
 
 .menu-rank {
-  background: linear-gradient(180deg, #FFFFFF 0%, #FFF9E6 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF7DC 100%);
 }
 
 .menu-point {
@@ -459,15 +452,15 @@ html {
 }
 
 .menu-chat {
-  background: linear-gradient(180deg, #FFFFFF 0%, #EEF8F4 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF7DC  100%);
 }
 
 .menu-rank::before {
-  background: rgba(242, 201, 76, 0.2);
+  background: rgba(94, 159, 138, 0.18);
 }
 
 .menu-point::before {
-  background: rgba(209, 169, 22, 0.16);
+  background: rgba(94, 159, 138, 0.18);
 }
 
 .menu-chat::before {
@@ -488,8 +481,30 @@ html {
 
 .talking-character {
   position: relative;
-  display: inline-block;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 10px;
 }
+
+.character-scale {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mouse_image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 
 .floating-character {
   animation: gentle-float 2.6s ease-in-out infinite;

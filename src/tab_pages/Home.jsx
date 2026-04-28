@@ -6,7 +6,7 @@ import {ChatIcon} from "../charticons/ChatIcon";
 
 function Home({setActiveTab}) {
   const point = 1240; // 현재 포인트 (예시로 1240점 설정)
-  const streak = 5; // 연속 기록 일수 (예시로 4일 설정)
+  const streak = 0; // 연속 기록 일수 (예시로 4일 설정)
   const remainingDays = 7 - streak;
   const days = ["월", "화", "수", "목", "금", "토", "일"];
   /* const mealStatusText = "아침 완료 · 점심 미기록 · 저녁 예정"; */
@@ -25,17 +25,21 @@ function Home({setActiveTab}) {
   // 일요일이면 6, 아니면 -1 해서 월요일부터 시작하도록
 
 
-  let image = "/mouse/mse_0.png"; // 기본 쥐 이미지
+  let image = "/cheese/sleeping.svg"; // 기본 쥐 이미지
   let message = "오늘 식단을 기록해볼까요?"; // 기본 메시지
+  let variant = "sleeping";
 
   if (streak>=6) {
-    image = "/mouse/mse_6.png";
+    image = "/cheese/happy_smile.svg";
+    variant = "happy-smile";
     message = `와~ 6일 연속이네요! 대단해요!`;
-  } else if (streak >= 3) {
-    image = "/mouse/mse_3.png";
+  } else if (streak >= 4) {
+    image = "/cheese/happy_normal.svg";
+    variant = "happy-normal";
     message =`${remainingDays}일만 더 기록하고 \n 포인트 받아가요!`;
   } else if (streak >= 1) {
-    image = "/mouse/mse_1.png";
+    image = "/cheese/normal.svg";
+    variant = "normal";
     message = "시작이 좋아요! 계속 달려봐요!";
   }
 
@@ -55,12 +59,12 @@ function Home({setActiveTab}) {
       <br />
       <section className="welcome-card">
         <div className = "mouse-image">
-          <TalkingCharacter image={image} streak={streak} />
+          <TalkingCharacter image={image} streak={streak} variant={variant} />
         </div>
 
         <div className="welcome-content">
           <h2>오늘의 식단관리</h2>
-          <p className = "welcome-content-sub">체다님! 점심 기록이 아직 비어 있어요</p>
+          <p className = "welcome-content-sub">체다님 ! 점심 기록이 아직 비어 있어요</p>
 
           <div className="meal-status">
             아침 완료 · <span className="highlight">점심 미기록</span> · 저녁 예정
