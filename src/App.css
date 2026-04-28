@@ -1,7 +1,6 @@
 /*3. App.css : App.jsx에서 정한 classname에 적용하는 css*/
 
-/*(1) 전체 화면 스타일*/
-
+/*(0) 전체 화면 스타일*/
 body {
   margin: 0;
   font-family: 'Pretendard', sans-serif;
@@ -10,7 +9,7 @@ body {
 
 .app {
   min-height: 100vh;
-  background: rgba(225, 223, 218, 0.909);
+  background: white;
   padding-bottom: 90px;
 }
 
@@ -36,13 +35,17 @@ html {
 }
 
 .home-logo{
-  font-family: 'Playfair Display', serif;
-  letter-spacing: -1px; /* 글자간격 좁히기 */
-  transform: skewX(-5deg);
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Pacifico', cursive;
+  letter-spacing: -0.5px; /* 글자간격 좁히기 */
+  transform: skewX(0deg);
   color: #d1a916;
-  font-size: 20px;
+  font-size: 22px;
   margin: 0;
-  font-weight: 800;
+    letter-spacing: 2px;
+
+  font-weight: 200;
+  /*  font-weight: 800; */
   /*  text-shadow: 0 2px 6px rgba(0,0,0,0.15); */
 }
 
@@ -54,6 +57,8 @@ html {
 }
 
 .point-badge{
+    font-family: 'Pretendard', sans-serif;
+
   width: 26px;
   height: 26px;
   border-radius: 50%;
@@ -83,8 +88,8 @@ html {
 
   height: 72px;
   background: white; 
-  border-radius: 30px 30px 0 0; /*탭바의 윗부분만 둥글게*/
-  border-top: 1px solid #ddd; /*탭바 위쪽에 연한 회색 선*/
+  border-radius: 0px 0px 0 0; /*탭바의 윗부분만 둥글게*/
+  border-top: 1.5px solid #ddd; /*탭바 위쪽에 연한 회색 선*/
 
   display: flex; 
   justify-content: space-around; /*버튼들 사이 간격을 비슷하게 벌림*/
@@ -130,7 +135,7 @@ html {
 
 
 
-/* 가운데 메인 식단 탭 */
+/*(2)-1. Tapbar 탭 가운데 메인 식단 탭 */
 .diet-floating-icon {
   position:absolute;
   top: -6px;
@@ -147,7 +152,7 @@ html {
   transition: transform 0.2s ease; /*transform이 부드럽게 변화하도록 설정*/
   transform: translateY(-19px); /*기본 위치에서 위로 19px 이동시킴, 마우스를 올렸을 때 더 위로 올라가도록 설정*/
   box-shadow:
-    0 8px 24px rgba(255, 184, 0, 0.4),
+    0 8px 24px rgba(255, 255, 255, 0.4),
     0 4px 8px rgba(0, 0, 0, 0.1);}
 
 .diet-tab:active .diet-floating-icon {
@@ -167,13 +172,12 @@ html {
   transform: scale(1) translateY(-19px);
 } /*마우스를 올렸을 때 아이콘이 커지는 효과*/
 
-/*(3) 홈, 첫화면 */
-
+/*(1) 홈화면 카드1 _ 인삿말 */
 
 .welcome-card {
   display: flex;
   gap: 16px;
-  background: #fff3c4;
+  /* background: #fff3c4; */ background:rgba(249, 249, 249, 1);
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -231,13 +235,16 @@ html {
   margin: 20px 0 12px;
 }
 
+/*(1) 홈화면 카드2 _ 포인트 */
 .point-card {
   position: relative;
-  background: linear-gradient(135deg, #d6a83e, #f2d477);
+  background:rgba(249, 249, 249, 1); /* 마지막 값이 투명도 (0~1) */;
   border-radius: 20px;
-  padding: 28px 24px;
-  color: white;
+  padding: 28px 24px 7px;
+  color: black;
   text-align: center;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.08);
+
 }
 
 .point-card strong {
@@ -250,6 +257,8 @@ html {
   right: 16px;
   background: #fff3c4;
   color: #8a641c;
+  border: 0.1px solid rgb(209, 169, 22, 0.2h); /*탭바 위쪽에 연한 회색 선*/
+
   border-radius: 50%;
   width: 56px;
   height: 56px;
@@ -261,15 +270,15 @@ html {
 
 .progress-bar {
   height: 8px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(227, 207, 207, 0.4);
   border-radius: 999px;
   margin-top: 16px;
 }
 
 .progress-fill {
-  width: 70%;
+  width: 90%;
   height: 100%;
-  background: white;
+  /*background:  #ffc34d;*/ background: #d1a916;
   border-radius: 999px;
 }
 
@@ -302,11 +311,57 @@ html {
   color: white;
 }
 
+/*(1) 홈화면 카드3 _ 메뉴3개 */
+.menus {
+  display: grid; /* 요소를 “그리드 레이아웃(격자 시스템)”으로 바꿈*/
+  grid-template-columns: repeat(3, 1fr); /*3열(칸)로 나누기*/
+  gap: 14px;
+  padding: 0 0px;
+  margin-top: 20px; /* 포인트 카드와 메뉴 사이 간격 */
+}
+
+.menu-card {
+  height: 118px;
+  padding: 16px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #DFF4EE 0%, #BFE3DA 100%);  
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.menu-card h3 {
+  font-size: 18px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.menu-card p {
+  font-size: 13px;
+  color: #888;
+}
+
+.menu-rank {
+background: linear-gradient(135deg, #FFF2C2 0%, #FFD666 100%);
+}
+.menu-point {
+background: linear-gradient(135deg, #FFF4CC 0%, #FFD666 100%);}
+
+.menu-chat {
+background: linear-gradient(135deg, #DFF4EE 0%, #BFE3DA 100%);
+}
+
+.menu-card svg {
+  position: absolute;
+  bottom: 60px;
+  right: 10px;
+  width: 40x;
+  height: 40px;
+}
 
 
 
-
-
+/*(1) 홈화면 카드1 _ 인삿말캐릭터애니메니션_ */
 
 .talking-character {
   position: relative;
@@ -411,50 +466,4 @@ html {
     opacity: 1;
     transform: scale(1.2);
   }
-}
-
-/* (1) 홈화면 하단부 카드 */
-.menus {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  padding: 0 0px;
-}
-
-.menu-card {
-  height: 118px;
-  padding: 16px;
-  border-radius: 22px;
-  background: linear-gradient(180deg, #ffffff 0%, #fff8e8 100%);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-
-  position: relative;
-}
-
-.menu-card h3 {
-  font-size: 18px;
-  margin-top: 6px;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.menu-card p {
-  font-size: 13px;
-  color: #888;
-}
-
-.menu-rank {
-  background: linear-gradient(135deg, #ffdc15cc 0%, #d896082c 100%);
-}
-
-.menu-point {
-  background: linear-gradient(135deg, #ffc34d 0%, #fff0b3 100%);
-}
-
-.menu-card svg {
-  position: absolute;
-  bottom: 60px;
-  right: 10px;
-  width: 40x;
-  height: 40px;
 }

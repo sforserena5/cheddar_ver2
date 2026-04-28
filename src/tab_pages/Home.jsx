@@ -65,7 +65,7 @@ function Home({setActiveTab}) {
         </div>
       </section>
 
-      <h1 className="section-title">내 포인트</h1>
+      <h1 className="section-title"></h1>
 
       <section className="point-card">
         <div className="level-badge">Lv.7</div>
@@ -75,23 +75,22 @@ function Home({setActiveTab}) {
         <div className="progress-bar">
           <div className="progress-fill"></div>
         </div>
+      
+        <section className="week-row">
+            {days.map((day, index) => {
+              const isChecked = index <= todayIndex && index >= todayIndex - (streak - 1);
+
+              return (
+                <div className="day-item" key={day}>
+                  <span>{day}</span>
+                  <div className={isChecked ? "day-circle checked" : "day-circle"}>
+                    ✓
+                  </div>
+                </div>
+              );
+            })}
+          </section>
       </section>
-
-    <section className="week-row">
-        {days.map((day, index) => {
-          const isChecked = index <= todayIndex && index >= todayIndex - (streak - 1);
-
-          return (
-            <div className="day-item" key={day}>
-              <span>{day}</span>
-              <div className={isChecked ? "day-circle checked" : "day-circle"}>
-                ✓
-              </div>
-            </div>
-          );
-        })}
-      </section>
-
     <section className="menus">
       <div className="menu-card menu-rank">
         <h3>랭킹</h3>
