@@ -31,13 +31,15 @@ function TabBar({ activeTab, setActiveTab }) {
       <button
         className={activeTab === "diet" ? "active diet-tab" : "diet-tab"}
         onClick={() => setActiveTab("diet")} 
-        >
+      >
+        
         <div className="diet-floating-icon">
-            <DiaryIcon active={true} />
+          {/* <span className="diet-plus-icon" /> */}
+             <DiaryIcon active={true} /> 
             {/*DiaryIcon은 항상 “활성 상태”로 동작하도록 active={true}로 설정 -> 아이콘이 항상 노란색*/}
         </div>
         <div className="diet-label">식단</div>
-        </button>
+      </button>
 
     {/*4. 대화버튼*/}
       <button

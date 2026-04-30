@@ -5,8 +5,8 @@ import {BadgeIcon} from "../charticons/BadgeIcon";
 import {ChatIcon} from "../charticons/ChatIcon";
 
 function Home({setActiveTab}) {
-  const point = 1240; // 현재 포인트 (예시로 1240점 설정)
-  const streak = 0; // 연속 기록 일수 (예시로 4일 설정)
+  const point = 1040; // 현재 포인트 (예시로 1040점 설정)
+  const streak = 3; // 연속 기록 일수 (예시로 4일 설정)
   const remainingDays = 7 - streak;
   const days = ["월", "화", "수", "목", "금", "토", "일"];
   /* const mealStatusText = "아침 완료 · 점심 미기록 · 저녁 예정"; */
@@ -25,7 +25,7 @@ function Home({setActiveTab}) {
   // 일요일이면 6, 아니면 -1 해서 월요일부터 시작하도록
 
 
-  let image = "/cheese/sleeping.svg"; // 기본 쥐 이미지
+  let image = "/cheese/sleeping.svg"; // 디폴트 이미지
   let message = "오늘 식단을 기록해볼까요?"; // 기본 메시지
   let variant = "sleeping";
 
@@ -74,15 +74,18 @@ function Home({setActiveTab}) {
           <div className="welcome-buttons">
             <button onClick={()=>setActiveTab("diet")}>식단 기록하기</button> 
           </div>
-        </div>
+
+            {/* <button className="feedback-button"
+              onClick={() => setActiveTab("point")}> 주간리포트 </button> */}
+        </div> {/* setActiveTab("point")는 임시. 추후 주간 리포트 페이지에 연결. */}
       </section>
 
 
       <section className="point-card">
         <div className="level-badge">Lv.7</div>
-        <strong>1,040</strong>
-        <span>CP</span>
-        <p>현재 포인트 70%</p>
+        <strong>1,240</strong>
+        <span>XP</span>
+        <p>다음 레벨까지 70%</p>
         <div className="progress-bar">
           <div className="progress-fill"></div>
         </div>
@@ -123,6 +126,9 @@ function Home({setActiveTab}) {
 
     </section>
 
+    <section className="menu-card2 feedback">
+      <h3>주간 피드백 리포트</h3>
+    </section>
     </div>
   )
 }

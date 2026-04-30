@@ -189,6 +189,30 @@ html {
 
 }
 
+.diet-plus-icon {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.diet-plus-icon::before,
+.diet-plus-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 26px;
+  height: 5px;
+  border-radius: 200px;
+  background: #FAF7EF;
+  transform: translate(-50%, -50%);
+}
+
+.diet-plus-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
 @keyframes diet-breathe {
   0%, 100% {
     transform: translateY(-19px) scale(1);
@@ -225,7 +249,7 @@ html {
   /* background: #fff3c4; */ /*background:rgba(249, 249, 249, 1); */
   /* background: var(--card-white); */
   padding: 10px 2px 0px;
-  margin-top: 0px;
+  margin-top: -10px;
   margin-bottom: 14px;
 }
 
@@ -253,20 +277,6 @@ html {
 
 }
 
-
-@keyframes character-bounce {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  50% {
-    transform: translateX(-4px) translateY(-6px) rotate(-2deg);
-  }
-
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-}
 
 .welcome-card h2 {
   margin: 0 0 7px;
@@ -299,8 +309,7 @@ html {
   background: #FFF0B8;
   font-weight: bold;
   color: var(--text-main);
-    box-shadow: 0 3px 8px rgba(209, 169, 22, 0.10);
-
+  box-shadow: 0 3px 8px rgba(209, 169, 22, 0.10);
 }
 
 
@@ -310,7 +319,7 @@ html {
     background: linear-gradient(180deg, #FFFFFF 0%, #FFF7DC 100%);
 ; /* 마지막 값이 투명도 (0~1) */;
   border-radius: var(--radius-card);
-  padding: 28px 24px 15px;
+  padding: 15px 24px 15px;
   color: black;
   text-align: center;
   box-shadow: var(--shadow-card);
@@ -319,6 +328,10 @@ html {
 
 .point-card strong {
   font-size: 34px;
+}
+
+.point-card p {
+  font-size: 12px;
 }
 
 .level-badge {
@@ -413,23 +426,12 @@ html {
   border-radius: 50%;
   right: -30px;
   bottom: -30px;
-  background: rgba(242, 201, 76, 0.18);
-}
-
-.menu-card h3  {
-  position: relative;
-  z-index: 1;
-}
-.menu-card p {
-  position: relative;
-  z-index: 1;
-}
-.menu-card svg {
-  position: relative;
-  z-index: 1;
+background: rgba(242, 201, 76, 0.24);
 }
 
 .menu-card h3 {
+  position: relative;
+  z-index: 1;
   font-size: 17px;
   font-weight: 800;
   margin-top: 6px;
@@ -438,6 +440,8 @@ html {
 }
 
 .menu-card p {
+  position: relative;
+  z-index: 1;
   font-size: 13px;
   color: #888;
   line-height: 1.4;
@@ -455,6 +459,60 @@ html {
   background: linear-gradient(180deg, #FFFFFF 0%, #FFF7DC  100%);
 }
 
+
+/* 마지막 피드백 버튼: menu-card2 */
+.menu-card2 {
+  height: 60px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background: var(--card-white);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow:hidden;
+  text-align: center;
+}
+
+/*.menu-card2 요소 안에 보이지 않는 장식 요소를 하나 만든다는 뜻.
+.menu-card2::before { 
+  content: ""; // ::before를 화면에 만들려면 거의 필수로 넣어야 함. 텍스트는 없고, 빈 장식만 만든다는 뜻.
+  position: absolute; 부모 카드 기준으로 원하는 위치에 배치하겠다는 뜻. 이게 제대로 작동하려면 부모인 .menu-card2에 relative가 있어야 해
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  right: -30px;
+  bottom: -30px;
+  background: rgba(242, 201, 76, 0.18);
+}
+*/
+
+.menu-card2 h3 {
+  position: relative;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: 800;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.menu-card2 p {
+  position: relative;
+  z-index: 1;
+}
+
+.menu-card2 svg {
+  position: relative;
+  z-index: 1;
+}
+
+
+.feedback{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF7DC  100%);
+}
+
+/* 메뉴의 동그라미 원 색상
 .menu-rank::before {
   background: rgba(94, 159, 138, 0.18);
 }
@@ -466,16 +524,17 @@ html {
 .menu-chat::before {
   background: rgba(94, 159, 138, 0.18);
 }
+*/
 
 .menu-card svg {
   position: absolute;
+  z-index: 1;
   right: 12px;
   bottom: 10px;
   top: auto;
   width: 38px;
   height: 38px;
 }
-
 
 /*(1) 홈화면 카드1 _ 인삿말캐릭터애니메니션_ */
 
@@ -512,18 +571,6 @@ html {
 
 .effect-default .floating-character {
   animation: none;
-}
-
-.effect-level-1 .floating-character {
-  animation: gentle-float 2.8s ease-in-out infinite;
-}
-
-.effect-level-3 .floating-character {
-  animation: happy-float 2.2s ease-in-out infinite;
-}
-
-.effect-level-6 .floating-character {
-  animation: celebration-float 1.8s ease-in-out infinite;
 }
 
 .sparkle {
@@ -571,26 +618,6 @@ html {
 
   50% {
     transform: translateY(-4px);
-  }
-}
-
-@keyframes happy-float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-6px) rotate(-2deg);
-  }
-}
-
-@keyframes celebration-float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg) scale(1);
-  }
-
-  50% {
-    transform: translateY(-8px) rotate(3deg) scale(1.04);
   }
 }
 

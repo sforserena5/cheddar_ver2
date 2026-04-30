@@ -1,6 +1,8 @@
 /*2. App.jsx*/
 
 import './App.css'
+import './Point.css'
+import './Chat.css'
 import { useState } from 'react';
 import Home from './tab_pages/Home';
 import Diet from './tab_pages/Diet';

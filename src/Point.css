@@ -1,0 +1,381 @@
+/*(2) 포인트 페이지 — 디자인 토큰은 App.css의 :root에서 공급 */
+
+/*1. 총포인트*/
+.point-total-card {
+  padding: 20px 20px 5px 10px;
+  margin-top: 20px;
+  margin-bottom: 14px;
+}
+
+.point-card p {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin: 0 0 6px;
+}
+
+.point-card strong {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.6px;
+}
+
+/* 총 포인트 숫자 (큰 숫자 + 작은 P) */
+.point-total-number {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.point-total-number span {
+  font-size: 18px;
+  font-weight: 380;
+  margin-left: 2px;
+  letter-spacing: -1px;
+}
+
+
+.point-page-desc {
+  text-align: center;
+  color: var(--text-sub);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  margin: 6px 0 18px;
+}
+
+
+/* 2. 적립내역 */
+.point-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.point-summary-card {
+  background: var(--card-white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 10px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.point-summary-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin: 0 0 6px;
+}
+
+.point-summary-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.2px;
+}
+
+.point-history {
+  margin-top: 22px;
+}
+
+.point-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  padding: 0 4px;
+  gap: 12px;
+}
+
+.point-history-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.point-history-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+.point-history-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-sub);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.point-history-more {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sub);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.point-history-card {
+  background: var(--card-white);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  padding: 4px 14px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.point-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.point-history-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.point-history-row:last-child {
+  border-bottom: none;
+}
+
+/* 통합 적립 기준 아이콘 — 28px 원형 배지 + 텍스트 심볼.
+   pointRules / recentHistory 양쪽이 같은 id에 같은 아이콘을 출력. */
+.point-rule-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-family: 'Pretendard', sans-serif;
+  line-height: 1;
+  background: rgba(242, 201, 76, 0.24);
+
+}
+
+/* 식단 1회 기록 — 연 크림 원 + CSS로 그린 체크 (한 끼 완료).
+   span 안의 ✓ 문자는 font-size:0으로 숨기고 ::before가 체크를 그림. */
+.icon-meal-check {
+  background: var(--primary-soft);
+  font-size: 0;
+}
+
+.icon-meal-check::before {
+  content: "";
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid var(--primary-strong);
+  border-bottom: 2px solid var(--primary-strong);
+  border-bottom-left-radius: 1px;
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+/* 하루 3끼 완료 — 연 크림 + 가운데 점 3개 */
+.icon-three-meals {
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 주 5일 기록 — 연 크림 + 별 1개 (주간 목표 달성) */
+.icon-weekly-goal {
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  font-size: 14px;
+}
+
+/* 주 7일 기록 — 연 크림 + 작은 별 3개 (주간 완성 보너스) */
+.icon-full-week {
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  font-size: 8px;
+  letter-spacing: 0.5px;
+}
+
+.point-history-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.point-history-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.3;
+  margin: 0 0 2px;
+}
+
+.point-history-time {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.point-history-value {
+  flex: 0 0 auto;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-strong);
+  letter-spacing: -0.2px;
+}
+
+/* 3. 적립기준*/
+/* 3-1. 적립기준 카드 전체*/
+.point-rules {
+  margin-top: 22px;
+}
+
+.point-rules-title {
+  font-size: 17px;
+  font-weight: 700;
+  
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+  margin: 0 0 10px;
+  padding-left: 4px;
+}
+
+.point-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.point-rules-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF7DC 100%);
+  border: 1px solid rgba(46, 42, 36, 0.04);
+  border-radius: 22px;
+  padding: 14px 16px 14px;
+  min-height: 88px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.point-rules-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(46, 42, 36, 0.10);
+}
+
+/* 3-2. 적립기준 안의 원 */
+.point-rules-card::before {
+  content: "";
+  position: absolute;
+  right: -15px;
+  bottom: -18px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(242, 201, 76, 0.24);
+  pointer-events: none;
+}
+
+.point-rules-label {
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sub);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.point-rules-value {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  font-size: 21px;
+  font-weight: 900;
+  color: var(--primary-strong);
+  letter-spacing: -0.4px;
+}
+
+/* 3-3. 적립 기준 옆 물음표와 안내멘트 */
+.point-rules-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+.point-rules-title-row .point-rules-title {
+  margin: 0;
+  padding-left: 0;
+}
+
+.point-rules-help-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.point-rules-help {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(46, 42, 36, 0.12);
+  background: var(--card-white);
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.point-rules-help:hover {
+  background: var(--card);
+}
+
+.point-info-tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: gray;
+  color: #FFFDF8;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.point-info-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: gray;
+}
+
+
